@@ -5,6 +5,8 @@ include_once("functions.php");
 <!DOCTYPE HTML>
 <html>
     
+    <p>This is a dev branch</p>
+    
 	<head>
         <?php include_once("includes/headIncludes.php"); ?>
 	</head>
