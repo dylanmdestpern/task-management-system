@@ -26,7 +26,7 @@
                        id="register-email"
                        type="email" 
                        name="email" 
-                       placeholder="Enter your email address" 
+                       placeholder="Enter email" 
                        value="<?php if ( isset($_REQUEST['action']) ) { if( $_REQUEST['action'] == 'registerUser' ) { echo $_POST['email']; } } ?>">
             </div>
             
@@ -37,7 +37,7 @@
                        id="register-confirmEmail"
                        type="email" 
                        name="confirmEmail" 
-                       placeholder="Enter your email again" 
+                       placeholder="Repeat email" 
                        value="<?php if ( isset($_REQUEST['action']) ) { if( $_REQUEST['action'] == 'registerUser' ) { echo $_POST['confirmEmail']; } } ?>">
 
             </div>
@@ -88,7 +88,7 @@
                        id="register-confirmPassword"
                        type="password" 
                        name="confirmPassword" 
-                       placeholder="Enter the password again">
+                       placeholder="Repeat password">
             </div>
         </div>
         <input 

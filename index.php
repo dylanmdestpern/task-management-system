@@ -1,11 +1,7 @@
-<?php
-include_once("functions.php");
-?>
+
 
 <!DOCTYPE HTML>
 <html>
-    
-    <p>This is a dev branch</p>
     
 	<head>
         <?php include_once("includes/headIncludes.php"); ?>
@@ -14,6 +10,8 @@ include_once("functions.php");
 	<body>
 
         <div class="container">
+            
+            <?php include_once("functions.php"); ?>
             
             <div class="row">
                 <div class="col-sm">
@@ -25,6 +23,15 @@ include_once("functions.php");
                     <?php include "includes/registerForm.php"; ?>
                 </div>
             </div>
+            
+            <?php 
+            if ( isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] == true ) {
+                ?>
+                <a href="index.php?action=logout">Logout</a>
+                <?php
+            }
+            ?>
+            
         </div>
         
 	</body>

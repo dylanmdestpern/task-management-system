@@ -195,6 +195,9 @@ samp {
 }
 
 pre {
+  border: 1px solid #AAA;
+  background: #F5F5F5;
+  padding: 10px;
   margin-top: 0;
   margin-bottom: 1rem;
   overflow: auto;
@@ -4955,6 +4958,12 @@ tbody.collapse.show {
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+}
+
+.alert-small {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
 }
 
 .alert-heading {
