@@ -1,21 +1,18 @@
 <?php
 
-session_start();
+    session_start();
 
-if ( isset($_REQUEST['displaySuccessMsg']) ) {
-    echo success($_REQUEST['displaySuccessMsg']);
-}
+    if ( isset($_REQUEST['displaySuccessMsg']) ) {
+        echo success($_REQUEST['displaySuccessMsg']);
+    }
 
-if ( isset($_REQUEST['displayErrorMsg']) ) {
-    echo error($_REQUEST['displayErrorMsg']);
-}
+    if ( isset($_REQUEST['displayErrorMsg']) ) {
+        echo error($_REQUEST['displayErrorMsg']);
+    }
 
-if ( isset($_REQUEST['displayMsg']) ) {
-    echo primary($_REQUEST['displayMsg']);
-}
-?>
-
-<?php
+    if ( isset($_REQUEST['displayMsg']) ) {
+        echo primary($_REQUEST['displayMsg']);
+    }
     
     include_once("config.php");
     include_once("classes/class.user.php");
@@ -32,19 +29,30 @@ if ( isset($_REQUEST['displayMsg']) ) {
     $linkID = mySQLConnect();
     function mySQLConnect( $dbserver = DB_SERVER, $dbName = DB_DATABASE, $dbUser = DB_USER, $dbPass = DB_PASSWORD ) {
         if ( ! $con = mysqli_connect($dbserver, $dbUser, $dbPass, $dbName) ) {
-            die("Could not connect to database. Please contact your administrator.");
+            die("Could not cosnnect to database. Please contact your administrator.");
         } else {
             return $con;
         }
     }
 
     if ( isset($_SESSION['userLoggedIn']) ) {
-        if ($_SESSION['userLoggedIn'] == true) {
-            $loggedUser = new User($linkID, $_SESSION['userId']);
-            devMsg($loggedUser->getUserInfo());
+        
+        if ( isset($loggedInRedirectUrl) ) {
+            header("Location: ".$loggedInRedirectUrl);
         }
+        
+        if ($_SESSION['userLoggedIn'] == true) {
+            $loggedUserArray = new User($linkID, $_SESSION['userId']);
+            $loggedUser = $loggedUserArray->getUserInfo();
+            devMsg($loggedUserArray ->getUserInfo());
+        }
+        
     } else {
-        echo "Not logged in";
+        if ( isset($loggedUsersOnly) && isset($restrictedRedirectUrl) ) {
+            if ( $loggedUsersOnly == true ) {
+                header("Location: index.php?displayMsg=You were redirected here because you're not logged in.");
+            }
+        }
     }
 
 	//Action functions here:
@@ -90,6 +98,31 @@ if ( isset($_REQUEST['displayMsg']) ) {
     }
 
     //Additional functions here:
+    //random array function you can use or write your own
+    function randomArrayVar ($array) {
+        if (!is_array($array)) {
+            return $array;
+        }
+        return $array[array_rand($array)];
+    }
+
+    //list of grettings as arary
+    $greeting= array(
+        "aloha"=>"Aloha",
+        "ahoy"=>"Ahoy",
+        "bonjour"=>"Bonjour",
+        "gday"=>"G'day",
+        "hello"=>"Hello",
+        "hey"=>"Hey",
+        "hi"=>"Hi",
+        "hola"=>"Hola",
+        "howdy"=>"Howdy",
+        "salutations"=>"Salutations",
+        "sup"=>"Sup",
+        "whatsup"=>"What's up",
+        "yo"=>"Yo",
+        "howzit"=>"Howzit"
+    );
 
     //Messages
     function error ( $errorMsg ) {
@@ -121,5 +154,4 @@ if ( isset($_REQUEST['displayMsg']) ) {
         print_r($devMsg);
         echo "</pre>";
     }
-
 ?>

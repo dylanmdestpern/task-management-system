@@ -1,4 +1,4 @@
-<div class="form-width">
+<div class="login-form">
     <h2>Login</h2>
     <hr/>
     <small class="form-text text-muted font-italic">Login to an existing account</small>
@@ -34,6 +34,6 @@
         </div>
         <br />
         <input type="hidden" name="action" value="loginUser">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <div style="text-align:right">New user? <a href="register.php">Register</a> &nbsp; <button type="submit" class="btn btn-primary">Login</button></div>
+    </form> 
 </div>

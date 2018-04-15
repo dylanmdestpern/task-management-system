@@ -5,11 +5,30 @@
     padding: 10px;
 }
 
+.login-form {
+    max-width: 400px;
+    margin: 0px auto;
+    border: 1px solid #CCC;
+    box-sizing: border-box;
+    padding: 0px 10px;
+}
+
 .register-inline-form {
     margin: 10px auto;
     width: 100%;
     border: 1px solid #CCC;
     padding: 10px;
+}
+
+.footer-bottom {
+    background: #FFF;
+    color: #555;
+    text-align: center;
+    bottom: 0;
+    padding:10px 0px 70px 0px;
+    border-top: 1px solid #CCC;
+    position: fixed;
+    width: 100%;
 }
 
 /*Small devices (landscape phones, 576px and up)*/
