@@ -13,17 +13,30 @@
         <?php include_once("includes/dashboardNav.php") ?>
         
         <div class="container">            
-            <h1>Dashboard</h1>
-            <div class="row">
-                <div class="col-sm">
-                    
-                </div>
-                <div class="col-sm">
-                    
-                </div>
-            </div>
+            <?php if ( isset($_SESSION['teamID']) ) {
+        
+            devMsg($loggedUserTeamInfo);
+    
+            ?>
             
-            <a href="?action=logout">Logout</a>
+                
+            
+                <h1><?=$loggedUserTeamInfo['teamName']?></h1>
+            
+                <div class="row">
+                    <div class="col-sm">
+
+                    </div>
+                    <div class="col-sm">
+
+                    </div>
+                </div>
+            
+            <?php    
+            } else {
+                include "includes/teamSelection.php";
+            }
+            ?>
             
         </div>
         

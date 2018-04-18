@@ -2,6 +2,7 @@
 
     session_start();
 
+
     if ( isset($_REQUEST['displaySuccessMsg']) ) {
         echo success($_REQUEST['displaySuccessMsg']);
     }
@@ -16,14 +17,7 @@
     
     include_once("config.php");
     include_once("classes/class.user.php");
-
-    if ( DEBUG_MODE ) {
-        ?>
-        <div class='alert alert-small alert-warning fade show' role='alert'>
-            This is a dev branch
-        </div>
-    <?php
-    }
+    include_once("classes/class.team.php");
 
     //MySQL connection.
     $linkID = mySQLConnect();
@@ -44,7 +38,29 @@
         if ($_SESSION['userLoggedIn'] == true) {
             $loggedUserArray = new User($linkID, $_SESSION['userId']);
             $loggedUser = $loggedUserArray->getUserInfo();
-            devMsg($loggedUserArray ->getUserInfo());
+            
+            if ( $loggedUser['active'] == 0 ) {
+                $loggedUserArray->userLogout();
+                header('Location: index.php?displayErrorMsg=Your account is still awaiting admin approval. Please contact your administrator.');
+            }
+            
+            $userIsAdmin = false;
+            
+            if ( $loggedUser['user_role'] == "admin") {
+                $userIsAdmin = true;
+            }
+            
+            //Now that we know the user is logged in with no objections, we can retrieve all extra info for the user
+            $loggedUserTeamsIdsArray = new Team();
+            $loggedUserTeamsIds = $loggedUserTeamsIdsArray->getUserTeamIds($linkID, $loggedUser['id']);
+            
+            if ( isset($_SESSION['teamID']) ) {
+                //Get team info
+                $loggedUserTeamInfo = $loggedUserTeamsIdsArray->getTeamInfo($linkID, $_SESSION['teamID']);
+            }
+            
+            //devMsg($loggedUserTeamsIds);
+            //devMsg($loggedUserArray ->getUserInfo());
         }
         
     } else {
@@ -93,6 +109,21 @@
                 $user = new User();
                 $user->userLogout();
                 header("Location: index.php?displayMsg=Successfully logged out.");
+            break;
+            case "setSessionTeamID":
+                if ( $_SESSION['userLoggedIn'] == true && isset($loggedUser) && $_REQUEST['teamID']) {
+                    
+                    if ( in_array($_REQUEST['teamID'], $loggedUserTeamsIds) ) {
+                        $_SESSION['teamID'] = $_REQUEST['teamID'];
+                    } else {
+                        $_SESSION['teamID'] = null;
+                    }
+                    
+                    header("Location: index.php");
+                    
+                } else {
+                    header("Location: index.php");
+                }
             break;
         }
     }
