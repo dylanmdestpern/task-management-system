@@ -18,19 +18,41 @@
             devMsg($loggedUserTeamInfo);
     
             ?>
-            
+                <?php
                 
-            
-                <h1><?=$loggedUserTeamInfo['teamName']?></h1>
-            
-                <div class="row">
-                    <div class="col-sm">
-
-                    </div>
-                    <div class="col-sm">
-
-                    </div>
-                </div>
+                if (isset($_GET["section"])) {
+                    
+                    switch ( $_GET["section"] ) {
+                        case "home":
+                            echo "Home";
+                        break;
+                        case "projects":
+                            switch ( $_GET["subSection"] ) {
+                                case "showAll":
+                                    ?>
+                                    <h2>All projects</h2>
+                                    <?php
+                                    
+                                    
+                                    
+                                break;
+                                case "editProject":
+                                    
+                                break;
+                                default:
+                                    
+                                break;
+                            }
+                        break;
+                        default:
+                            echo "default";
+                        break;
+                    }
+                } else {
+                    
+                }
+                
+                ?>
             
             <?php    
             } else {
