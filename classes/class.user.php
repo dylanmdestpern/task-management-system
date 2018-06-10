@@ -61,7 +61,7 @@ class User {
 		}
 
         //Check if username or email is already registered:
-        $sql = "SELECT * FROM users WHERE username = '".mysqli_real_escape_string($linkID, $username)."' OR email = '".mysqli_real_escape_string($linkID, $email)."'";
+        $sql = "SELECT * FROM ".DB_PREFIX."users WHERE username = '".mysqli_real_escape_string($linkID, $username)."' OR email = '".mysqli_real_escape_string($linkID, $email)."'";
 
         if( ! $checkExistUserR = mysqli_query($linkID, $sql) ) {
             $this->errorMsg = "Could not register user. Please contact your administrator.";
@@ -78,7 +78,7 @@ class User {
         mysqli_query($linkID, "BEGIN TRANSACTION");
         
         //We can now register the user
-        $sql = "INSERT INTO users VALUES (
+        $sql = "INSERT INTO ".DB_PREFIX."users VALUES (
             NULL, 
             '".mysqli_real_escape_string($linkID, $username)."',
             '".mysqli_real_escape_string($linkID, $email)."',
@@ -95,7 +95,7 @@ class User {
         } else {
             //Insert user password
             $userInsertID = mysqli_insert_id($linkID);
-            $sql = "INSERT INTO userPasswords VALUES (
+            $sql = "INSERT INTO ".DB_PREFIX."userpasswords VALUES (
                 NULL, 
                 '".mysqli_real_escape_string($linkID, $dbPassEnc)."',
                 ".mysqli_real_escape_string($linkID, $userInsertID)."
@@ -125,7 +125,7 @@ class User {
             return false;
         }
         
-        $sql = "SELECT users.*, userpasswords.password FROM users JOIN userpasswords ON users.id = userpasswords.userId WHERE 
+        $sql = "SELECT ".DB_PREFIX."users.*, ".DB_PREFIX."userpasswords.password FROM ".DB_PREFIX."users JOIN ".DB_PREFIX."userpasswords ON ".DB_PREFIX."users.id = ".DB_PREFIX."userpasswords.userId WHERE 
             username = '".mysqli_real_escape_string($linkID, $userNameEmail)."' 
             OR email = '".mysqli_real_escape_string($linkID, $userNameEmail)."'
         ";
@@ -156,7 +156,7 @@ class User {
     }
     
     public function getUserInfoArray ( $linkID, $userID ) {
-        $sql = "SELECT * FROM users WHERE id = ".mysqli_real_escape_string($linkID, $userID);
+        $sql = "SELECT * FROM ".DB_PREFIX."users WHERE id = ".mysqli_real_escape_string($linkID, $userID);
         if ( ! $userInfoR = mysqli_query($linkID, $sql) ) {
             $this->errorMsg = "A database error occured. Could not retrieve user info. Please contact your administrator.";
             $this->debugErrorMsg = mysqli_error($linkID);

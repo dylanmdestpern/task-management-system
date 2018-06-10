@@ -56,7 +56,7 @@
             
             if ( isset($_SESSION['teamID']) ) {
                 //Get team info
-                $loggedUserTeamInfo = $loggedUserTeamsIdsArray->getTeamInfo($linkID, $_SESSION['teamID']);
+                $loggedUserTeaminfo = $loggedUserTeamsIdsArray->getTeamInfo($linkID, $_SESSION['teamID']);
             }
             
             //devMsg($loggedUserTeamsIds);

@@ -15,9 +15,9 @@ class Team {
     
     function getteaminfo ( $linkID, $teamID ) {
         
-        //SELECT teaminfo.* FROM teaminfo JOIN teamusers ON teaminfo.id = teamusers.teamId WHERE teamusers.userId = 1;
+        //SELECT ".DB_PREFIX."teaminfo.* FROM ".DB_PREFIX."teaminfo JOIN ".DB_PREFIX."teamusersON ".DB_PREFIX."teaminfo.id = ".DB_PREFIX."teamusers.teamId WHERE ".DB_PREFIX."teamusers.userId = 1;
         
-        $sql = "SELECT * FROM teaminfo WHERE id = ".mysqli_real_escape_string($linkID, $teamID);
+        $sql = "SELECT * FROM ".DB_PREFIX."teaminfo WHERE id = ".mysqli_real_escape_string($linkID, $teamID);
         if ( ! $teaminfoR = mysqli_query($linkID, $sql) ) {
             $this->errorMsg = "A database error occured. Could not retrieve team info. Please contact your administrator.";
             $this->debugErrorMsg = mysqli_error($linkID);
@@ -38,15 +38,15 @@ class Team {
     
     function getUserTeamIds ( $linkID, $userID ) {
         $sql = "SELECT 
-                    teaminfo.id 
+                    ".DB_PREFIX."teaminfo.id 
                 FROM 
-                    teaminfo 
+                    ".DB_PREFIX."teaminfo 
                 JOIN 
-                    teamusers 
+                    ".DB_PREFIX."teamusers
                 ON 
-                    teaminfo.id = teamusers.teamId 
+                    ".DB_PREFIX."teaminfo.id = ".DB_PREFIX."teamusers.teamId 
                 WHERE 
-                    teamusers.userId = ".mysqli_real_escape_string($linkID, $userID);
+                    ".DB_PREFIX."teamusers.userId = ".mysqli_real_escape_string($linkID, $userID);
         
         if ( ! $teamIdsR = mysqli_query($linkID, $sql) ) {
             $this->errorMsg = "A database error occured. Could not retrieve user teams. Please contact your administrator.";
