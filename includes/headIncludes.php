@@ -7,9 +7,10 @@
 
 <!-- Bootstrap -->        
 <link rel="stylesheet" href="<?=$trailingPath?>css/bootstrap.css"/>
+<script src="<?=$trailingPath?>js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script  type="text/javascript" src="<?=$trailingPath?>js/bootstrap.min.js"></script>
 <script  type="text/javascript" src="<?=$trailingPath?>js/popper.min.js"></script>
+<script  type="text/javascript" src="<?=$trailingPath?>js/loader.js"></script>
 
 <link rel="stylesheet" href="<?=$trailingPath?>css/main.css"/>
-<script src="<?=$trailingPath?>js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?=$trailingPath?>js/main.js"></script>
