@@ -16,8 +16,8 @@ if ( ! isset($loggedUserTeamsIds) ) {
             <select class="form-control" id="teamSelect" name="teamID">
                 <?php
                     foreach ( $loggedUserTeamsIds as $loggedUserTeamsId ) {
-                        $loggedUserTeamInfo = $loggedUserTeamsIdsArray->getTeamInfo($linkID, $loggedUserTeamsId);
-                        echo "<option value='".$loggedUserTeamInfo['id']."'>".$loggedUserTeamInfo['teamName']."</option>";
+                        $loggedUserteaminfo = $loggedUserTeamsIdsArray->getteaminfo($linkID, $loggedUserTeamsId);
+                        echo "<option value='".$loggedUserteaminfo['id']."'>".$loggedUserteaminfo['teamName']."</option>";
                     }
                 ?>
             </select>

@@ -5,35 +5,35 @@ class Team {
     private $errorMsg;
     private $debugErrorMsg;
     
-    private $teamInfo;
+    private $teaminfo;
     
     function __construct ( $linkID = null, $teamID = null ) {
         if ( ! $linkID == null && $teamID == null ) {
-            $this->teamInfo = getTeamInfoArray($linkID, $teamID);
+            $this->teaminfo = getteaminfoArray($linkID, $teamID);
         }
     }
     
-    function getTeamInfo ( $linkID, $teamID ) {
+    function getteaminfo ( $linkID, $teamID ) {
         
         //SELECT teaminfo.* FROM teaminfo JOIN teamusers ON teaminfo.id = teamusers.teamId WHERE teamusers.userId = 1;
         
         $sql = "SELECT * FROM teaminfo WHERE id = ".mysqli_real_escape_string($linkID, $teamID);
-        if ( ! $teamInfoR = mysqli_query($linkID, $sql) ) {
+        if ( ! $teaminfoR = mysqli_query($linkID, $sql) ) {
             $this->errorMsg = "A database error occured. Could not retrieve team info. Please contact your administrator.";
             $this->debugErrorMsg = mysqli_error($linkID);
             return false;
         }
         
-        if ( mysqli_num_rows($teamInfoR) < 1 ) {
+        if ( mysqli_num_rows($teaminfoR) < 1 ) {
             $this->errorMsg = "The team does not exist. Please contact your administrator.";
             return false;
         }
         
-        return mysqli_fetch_assoc($teamInfoR);
+        return mysqli_fetch_assoc($teaminfoR);
     }
     
-    function getTeamInfoArray ( $linkID, $teamID ) {
-        return $this->teamInfo;
+    function getteaminfoArray ( $linkID, $teamID ) {
+        return $this->teaminfo;
     }
     
     function getUserTeamIds ( $linkID, $userID ) {

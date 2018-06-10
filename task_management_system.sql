@@ -34,7 +34,7 @@ CREATE TABLE `teaminfo` (
   `teamDescription` varchar(64) DEFAULT NULL,
   `teamImageUrl` varchar(64) DEFAULT NULL,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teaminfo`
@@ -54,7 +54,7 @@ CREATE TABLE `teamusers` (
   `id` int(11) UNSIGNED NOT NULL,
   `teamId` int(11) UNSIGNED NOT NULL,
   `userId` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teamusers`
@@ -76,7 +76,7 @@ CREATE TABLE `userpasswords` (
   `id` int(11) UNSIGNED NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `userID` int(11) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userpasswords`
@@ -101,7 +101,7 @@ CREATE TABLE `users` (
   `last_name` varchar(64) DEFAULT NULL,
   `user_role` enum('admin','user') DEFAULT NULL,
   `active` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`

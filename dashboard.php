@@ -15,7 +15,7 @@
         <div class="container">            
             <?php if ( isset($_SESSION['teamID']) ) {
         
-            devMsg($loggedUserTeamInfo);
+            devMsg($loggedUserteaminfo);
     
             ?>
                 <?php

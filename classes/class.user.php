@@ -125,14 +125,14 @@ class User {
             return false;
         }
         
-        $sql = "SELECT users.*, userPasswords.password FROM users JOIN userPasswords ON users.id = userPasswords.userId WHERE 
+        $sql = "SELECT users.*, userpasswords.password FROM users JOIN userpasswords ON users.id = userpasswords.userId WHERE 
             username = '".mysqli_real_escape_string($linkID, $userNameEmail)."' 
             OR email = '".mysqli_real_escape_string($linkID, $userNameEmail)."'
         ";
         
         if ( ! $userInfoR = mysqli_query($linkID, $sql) ) {
             $this->errorMsg = "A database error occured. Please contact your administrator.";
-            $this->debugErrorMsg = mysqli_error($linkID);
+            $this->debugErrorMsg = $sql." - ".mysqli_error($linkID);
             return false;
         }
         
