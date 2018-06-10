@@ -1,8 +1,6 @@
 <?php $loggedUsersOnly = false; $restrictedRedirectUrl = "";  $loggedInRedirectUrl = "dashboard.php" ?>
 <?php include_once("functions.php"); ?>
 
-<?php echo "This is a dev branch"; ?>
-
 <!DOCTYPE HTML>
 <html>
     
