@@ -2,7 +2,6 @@
 
     session_start();
 
-
     if ( isset($_REQUEST['displaySuccessMsg']) ) {
         echo success($_REQUEST['displaySuccessMsg']);
     }
@@ -15,7 +14,12 @@
         echo primary($_REQUEST['displayMsg']);
     }
     
-    include_once("config.php");
+    //If config.php does not exist. Display a debug message to indicate.
+	if ( ! file_exists("config.php") ) {
+		die(error("No config.php file was found. Create a config file or copy one from repo."));
+	}
+	
+	include_once("config.php");
     include_once("classes/class.user.php");
     include_once("classes/class.team.php");
 
