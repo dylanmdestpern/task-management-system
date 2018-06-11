@@ -3,7 +3,7 @@
     <hr/>
     <small id="emailHelp" class="form-text text-muted font-italic">Register a new user</small>
     <hr/>
-    <form method="POST">
+    <form method="POST" action="?userAction=register">
 
         <div class="row">
             <div class="col">
