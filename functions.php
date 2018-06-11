@@ -13,12 +13,12 @@
     if ( isset($_REQUEST['displayMsg']) ) {
         echo primary($_REQUEST['displayMsg']);
     }
-    
+
     //If config.php does not exist. Display a debug message to indicate.
 	if ( ! file_exists("config.php") ) {
 		die(error("No config.php file was found. Create a config file or copy one from repo."));
 	}
-	
+
 	include_once("config.php");
     include_once("classes/class.user.php");
     include_once("classes/class.team.php");
@@ -34,39 +34,39 @@
     }
 
     if ( isset($_SESSION['userLoggedIn']) ) {
-        
+
         if ( isset($loggedInRedirectUrl) ) {
             header("Location: ".$loggedInRedirectUrl);
         }
-        
+
         if ($_SESSION['userLoggedIn'] == true) {
             $loggedUserArray = new User($linkID, $_SESSION['userId']);
             $loggedUser = $loggedUserArray->getUserInfo();
-            
+
             if ( $loggedUser['active'] == 0 ) {
                 $loggedUserArray->userLogout();
                 header('Location: index.php?displayErrorMsg=Your account is still awaiting admin approval. Please contact your administrator.');
             }
-            
+
             $userIsAdmin = false;
-            
+
             if ( $loggedUser['user_role'] == "admin") {
                 $userIsAdmin = true;
             }
-            
+
             //Now that we know the user is logged in with no objections, we can retrieve all extra info for the user
             $loggedUserTeamsIdsArray = new Team();
             $loggedUserTeamsIds = $loggedUserTeamsIdsArray->getUserTeamIds($linkID, $loggedUser['id']);
-            
+
             if ( isset($_SESSION['teamID']) ) {
                 //Get team info
                 $loggedUserTeaminfo = $loggedUserTeamsIdsArray->getTeamInfo($linkID, $_SESSION['teamID']);
             }
-            
+
             //devMsg($loggedUserTeamsIds);
             //devMsg($loggedUserArray ->getUserInfo());
         }
-        
+
     } else {
         if ( isset($loggedUsersOnly) && isset($restrictedRedirectUrl) ) {
             if ( $loggedUsersOnly == true ) {
@@ -83,31 +83,31 @@
                 //$username, $firstName, $lastName, $email, $confirmEmail, $dbPass, $confirmPass, $userRole = "user"
                 if ( ! $user->addUser($linkID, $_REQUEST['username'], $_REQUEST['firstName'], $_REQUEST['lastName'], $_REQUEST['email'], $_REQUEST['confirmEmail'], $_REQUEST['password'], $_REQUEST['confirmPassword']) ) {
                     echo error($user->getErrorMsg());
-                    
+
                     if ( DEBUG_MODE == true && $user->getDebugErrorMsg() != "" ) {
                         echo debug($user->getDebugErrorMsg());
                     }
-                    
+
                 } else {
                     header("Location: index.php?displaySuccessMsg=User registered successfully!&displayMsg=Your account is awaiting approval from an admin. You will receive an email at <b>".$_REQUEST['email']."</b> once it's activated.");
                 }
-                
+
             break;
             case "loginUser":
                 $user = new User();
-                
+
                 if ( ! $user->login($linkID, $_REQUEST['usernameEmail'], $_REQUEST['password'] )) {
                     echo error($user->getErrorMsg());
-                    
+
                     if ( DEBUG_MODE == true && $user->getDebugErrorMsg() != "" ) {
                         echo debug($user->getDebugErrorMsg());
                     }
-                    
+
                 } else {
                     //Login successful
                     header("Location: index.php");
                 }
-                
+
             break;
             case "logout":
                 $user = new User();
@@ -116,15 +116,15 @@
             break;
             case "setSessionTeamID":
                 if ( $_SESSION['userLoggedIn'] == true && isset($loggedUser) && $_REQUEST['teamID']) {
-                    
+
                     if ( in_array($_REQUEST['teamID'], $loggedUserTeamsIds) ) {
                         $_SESSION['teamID'] = $_REQUEST['teamID'];
                     } else {
                         $_SESSION['teamID'] = null;
                     }
-                    
+
                     header("Location: index.php");
-                    
+
                 } else {
                     header("Location: index.php");
                 }

@@ -3,7 +3,7 @@
 
 <!DOCTYPE HTML>
 <html>
-    
+
 	<head>
         <?php include_once("includes/headIncludes.php"); ?>
 	</head>
@@ -18,21 +18,21 @@
                     <?php include "includes/loginForm.php"; ?>
                 </div>
             </div>
-            
-            <?php 
+
+            <?php
             if ( isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] == true ) {
                 ?>
                 <a href="index.php?action=logout">Logout</a>
                 <?php
             }
             ?>
-            
+
         </div>
-        
+
         <div class="footer-bottom">
             Copyright &copy; 2018 by <a href="http://www.go4software.co.za" target="_blank">Go4 Software</a>
         </div>
-        
+
 	</body>
 
 </html>
