@@ -5,7 +5,7 @@
 
 <?php if ( ! isset($trailingPath) ) { $trailingPath = "";  } ?>
 
-<!-- Bootstrap -->        
+<!-- Bootstrap -->
 <link rel="stylesheet" href="<?=$trailingPath?>css/bootstrap.css"/>
 <script src="<?=$trailingPath?>js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script  type="text/javascript" src="<?=$trailingPath?>js/bootstrap.min.js"></script>

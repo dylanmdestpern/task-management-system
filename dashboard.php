@@ -3,7 +3,7 @@
 
 <!DOCTYPE HTML>
 <html>
-    
+
 	<head>
         <?php include_once("includes/headIncludes.php"); ?>
 	</head>
@@ -11,17 +11,17 @@
 	<body>
 
         <?php include_once("includes/dashboardNav.php") ?>
-        
-        <div class="container">            
+
+        <div class="container">
             <?php if ( isset($_SESSION['teamID']) ) {
-        
+
             devMsg($loggedUserTeaminfo);
-    
+
             ?>
                 <?php
-                
+
                 if (isset($_GET["section"])) {
-                    
+
                     switch ( $_GET["section"] ) {
                         case "home":
                             echo "Home";
@@ -32,15 +32,15 @@
                                     ?>
                                     <h2>All projects</h2>
                                     <?php
-                                    
-                                    
-                                    
+
+
+
                                 break;
                                 case "editProject":
-                                    
+
                                 break;
                                 default:
-                                    
+
                                 break;
                             }
                         break;
@@ -49,19 +49,19 @@
                         break;
                     }
                 } else {
-                    
+
                 }
-                
+
                 ?>
-            
-            <?php    
+
+            <?php
             } else {
                 include "includes/teamSelection.php";
             }
             ?>
-            
+
         </div>
-        
+
 	</body>
 
 </html>
