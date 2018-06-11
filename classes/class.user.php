@@ -7,7 +7,7 @@ class User {
     private $errorMsg = "";
     private $debugErrorMsg = "";
     private $userInfo;
-    
+
     public function __construct( $linkID = null, $userID = null ) {
         if ( !$linkID == null && ! $userID == null ) {
             $this->userInfo = $this->getUserInfoArray($linkID, $userID);
@@ -25,10 +25,16 @@ class User {
     //User registration
     public function addUser( $linkID, $username, $firstName, $lastName, $email, $confirmEmail, $dbPass, $confirmPass, $userRole = "user" ) {
         //Check if email is valid email
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ( ! filter_var($email, FILTER_VALIDATE_EMAIL) ) {
             $this->errorMsg = "Please enter a valid email address.";
             return false;
         }
+
+		//Check if confirm email matches email
+		if ( $email != $confirmEmail ) {
+            $this->errorMsg = "The emails you entered do not match.";
+            return false;
+		}
 
 		if ( $dbPass != $confirmPass ) {
 			$this->errorMsg = "The passwords you entered do not match.";
@@ -53,11 +59,6 @@ class User {
                 //To get password:
                 //password_verify($dbPass, $hashedPassword);
 		    }
-		}
-
-		if ( $email != $confirmEmail ) {
-            $this->errorMsg = "The emails you entered do not match.";
-            return false;
 		}
 
         //Check if username or email is already registered:

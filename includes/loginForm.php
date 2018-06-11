@@ -34,6 +34,6 @@
         </div>
         <br />
         <input type="hidden" name="action" value="loginUser">
-        <div style="text-align:right">New user? <a href="register.php">Register</a> &nbsp; <button type="submit" class="btn btn-primary">Login</button></div>
+        <div style="text-align:right">New user? <a href="?userAction=register">Register</a> &nbsp; <button type="submit" class="btn btn-primary">Login</button></div>
     </form>
 </div>

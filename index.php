@@ -15,7 +15,23 @@
             <div class="row">
                 <div class="col-sm">
                     <!-- Show login form -->
-                    <?php include "includes/loginForm.php"; ?>
+					<?php
+						if ( ! isset($_REQUEST['userAction']) ) {
+							include "includes/loginForm.php";
+						} else {
+							switch ( $_REQUEST['userAction'] ) {
+								case 'register':
+									include "includes/registerForm.php";
+									break;
+								case "login":
+									include "includes/loginForm.php";
+									break;
+								default:
+									include "includes/loginForm.php";
+									break;
+							}
+						}
+					?>
                 </div>
             </div>
 

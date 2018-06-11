@@ -23,6 +23,10 @@
     include_once("classes/class.user.php");
     include_once("classes/class.team.php");
 
+	if ( DEBUG_MODE ) {
+		echo primary("This is a developement environment with <b>debugging</b> enabled.");
+	}
+
     //MySQL connection.
     $linkID = mySQLConnect();
     function mySQLConnect( $dbserver = DB_SERVER, $dbName = DB_DATABASE, $dbUser = DB_USER, $dbPass = DB_PASSWORD ) {
@@ -81,7 +85,15 @@
             case "registerUser":
                 $user = new User();
                 //$username, $firstName, $lastName, $email, $confirmEmail, $dbPass, $confirmPass, $userRole = "user"
-                if ( ! $user->addUser($linkID, $_REQUEST['username'], $_REQUEST['firstName'], $_REQUEST['lastName'], $_REQUEST['email'], $_REQUEST['confirmEmail'], $_REQUEST['password'], $_REQUEST['confirmPassword']) ) {
+                if ( ! $user->addUser(
+				$linkID, $_REQUEST['username'],
+				$_REQUEST['firstName'],
+				$_REQUEST['lastName'],
+				$_REQUEST['email'],
+				$_REQUEST['confirmEmail'],
+				$_REQUEST['password'],
+				$_REQUEST['confirmPassword']) ) {
+
                     echo error($user->getErrorMsg());
 
                     if ( DEBUG_MODE == true && $user->getDebugErrorMsg() != "" ) {
