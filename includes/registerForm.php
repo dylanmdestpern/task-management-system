@@ -96,6 +96,7 @@
                name="action"
                value="registerUser">
         <button type="submit" class="btn btn-primary">Register</button>
+		<a href="index.php">Cancel</a>
 
     </form>
 </div>
