@@ -24,6 +24,12 @@
     include_once("classes/class.team.php");
 
 	if ( DEBUG_MODE ) {
+		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		error_reporting(E_ALL);
+	}
+
+	if ( DEBUG_MODE ) {
 		echo primary("This is a developement environment with <b>debugging</b> enabled.");
 	}
 

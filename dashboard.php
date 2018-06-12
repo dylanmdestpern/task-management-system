@@ -17,7 +17,7 @@
 
 				//Get the users role for this team
 				devMsg($loggedUserTeaminfo);
-				devMsg("[".$loggedUser['id']."] ".$loggedUser['first_name']." ".$loggedUser['last_name']."'s role: ".$loggedUserTeamsIdsArray->getRoleFriendlyName($loggedUserTeamRole));
+				devMsg("[".$loggedUser['id']."] ".$loggedUser['first_name']." ".$loggedUser['last_name']."'s role: <b>".$loggedUserTeamsIdsArray->getRoleFriendlyName($loggedUserTeamRole)."</b>");
 
                 if (isset($_GET["section"])) {
 
