@@ -17,7 +17,8 @@ if ( ! isset($loggedUserTeamsIds) ) {
                 <?php
                     foreach ( $loggedUserTeamsIds as $loggedUserTeamsId ) {
                         $loggedUserteaminfo = $loggedUserTeamsIdsArray->getteaminfo($linkID, $loggedUserTeamsId);
-                        echo "<option value='".$loggedUserteaminfo['id']."'>".$loggedUserteaminfo['teamName']."</option>";
+						$userTeamRole = $loggedUserTeamsIdsArray->getUserTeamRole($linkID, $loggedUserTeamsId, $loggedUser['id']);
+                        echo "<option value='".$loggedUserteaminfo['id']."'>".$loggedUserteaminfo['teamName']." (".$loggedUserTeamsIdsArray->getRoleFriendlyName($userTeamRole).")</option>";
                     }
                 ?>
             </select>

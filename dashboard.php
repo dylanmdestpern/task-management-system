@@ -15,10 +15,9 @@
         <div class="container">
             <?php if ( isset($_SESSION['teamID']) ) {
 
-            devMsg($loggedUserTeaminfo);
-
-            ?>
-                <?php
+				//Get the users role for this team
+				devMsg($loggedUserTeaminfo);
+				devMsg("[".$loggedUser['id']."] ".$loggedUser['first_name']." ".$loggedUser['last_name']."'s role: ".$loggedUserTeamsIdsArray->getRoleFriendlyName($loggedUserTeamRole));
 
                 if (isset($_GET["section"])) {
 
