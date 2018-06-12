@@ -64,8 +64,21 @@
 
             if ( isset($_SESSION['teamID']) ) {
                 //Get team info
-                $loggedUserTeaminfo = $loggedUserTeamsIdsArray->getTeamInfo($linkID, $_SESSION['teamID']);
-				$loggedUserTeamRole = $loggedUserTeamsIdsArray->getUserTeamRole($linkID, $_SESSION['teamID'], $loggedUser['id']);
+
+
+				if ( ! $loggedUserTeaminfo = $loggedUserTeamsIdsArray->getTeamInfo($linkID, $_SESSION['teamID']) ) {
+					echo error($loggedUserTeamsIdsArray->getErrorMsg());
+					if ( DEBUG_MODE ) {
+						echo debug($loggedUserTeamsIdsArray->getDebugErrorMsg());
+					}
+				};
+
+				if ( ! $loggedUserTeamRole = $loggedUserTeamsIdsArray->getUserTeamRole($linkID, $_SESSION['teamID'], $loggedUser['id']) ) {
+					echo error($loggedUserTeamsIdsArray->getErrorMsg());
+					if ( DEBUG_MODE ) {
+						echo debug($loggedUserTeamsIdsArray->getDebugErrorMsg());
+					}
+				};
             }
 
             //devMsg($loggedUserTeamsIds);
