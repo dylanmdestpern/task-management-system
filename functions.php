@@ -24,6 +24,12 @@
     include_once("classes/class.team.php");
 
 	if ( DEBUG_MODE ) {
+		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		error_reporting(E_ALL);
+	}
+
+	if ( DEBUG_MODE ) {
 		echo primary("This is a developement environment with <b>debugging</b> enabled.");
 	}
 
@@ -64,7 +70,21 @@
 
             if ( isset($_SESSION['teamID']) ) {
                 //Get team info
-                $loggedUserTeaminfo = $loggedUserTeamsIdsArray->getTeamInfo($linkID, $_SESSION['teamID']);
+
+
+				if ( ! $loggedUserTeaminfo = $loggedUserTeamsIdsArray->getTeamInfo($linkID, $_SESSION['teamID']) ) {
+					echo error($loggedUserTeamsIdsArray->getErrorMsg());
+					if ( DEBUG_MODE ) {
+						echo debug($loggedUserTeamsIdsArray->getDebugErrorMsg());
+					}
+				};
+
+				if ( ! $loggedUserTeamRole = $loggedUserTeamsIdsArray->getUserTeamRole($linkID, $_SESSION['teamID'], $loggedUser['id']) ) {
+					echo error($loggedUserTeamsIdsArray->getErrorMsg());
+					if ( DEBUG_MODE ) {
+						echo debug($loggedUserTeamsIdsArray->getDebugErrorMsg());
+					}
+				};
             }
 
             //devMsg($loggedUserTeamsIds);

@@ -7,29 +7,30 @@
         <div class="form-group">
             <label for="login-emailUsername">Username or email</label>
             <input
-                   name="usernameEmail"
-                   type="text"
-                   class="form-control form-control-sm"
-                   id="login-emailUsername"
-                   placeholder="Enter your username or email">
+				autofocus
+				name="usernameEmail"
+            	type="text"
+                class="form-control form-control-sm"
+                id="login-emailUsername"
+                placeholder="Enter your username or email">
         </div>
 
         <div class="form-group">
             <label for="login-password">Password</label>
             <input
-                   name="password"
-                   type="password"
-                   class="form-control form-control-sm"
-                   id="login-password"
-                   placeholder="Enter password">
+                name="password"
+                type="password"
+                class="form-control form-control-sm"
+                id="login-password"
+                placeholder="Enter password">
         </div>
 
         <div class="custom-control custom-checkbox">
             <input
-                   name="login-keepLogin"
-                   type="checkbox"
-                   class="custom-control-input"
-                   id="customCheck1">
+                name="login-keepLogin"
+                type="checkbox"
+                class="custom-control-input"
+                id="customCheck1">
           <label class="custom-control-label" for="customCheck1">Keep me logged in</label>
         </div>
         <br />

@@ -4,7 +4,7 @@ class Team {
 
     private $errorMsg;
     private $debugErrorMsg;
-    
+
     private $teaminfo;
 
     function __construct ( $linkID = null, $teamID = null ) {
@@ -63,6 +63,61 @@ class Team {
         return $returnArray;
 
     }
+
+	function addTeam (  ) {
+
+	}
+
+	function getTeamUsers ( $linkID, $teamId ) {
+
+	}
+
+	function getUserTeamRole ( $linkID, $teamID, $userID ) {
+		$sql = "SELECT
+					role
+				FROM
+					".DB_PREFIX."teamusers
+				WHERE
+					userId = ".mysqli_real_escape_string($linkID, $userID)."
+				AND
+					teamId = ".mysqli_real_escape_string($linkID, $teamID);
+
+		if ( ! $userTeamRoleR = mysqli_query($linkID, $sql) ) {
+			$this->errorMsg = "A database error occured. Could not retrieve user team role. Please contact your administrator";
+			$this->debugErrorMsg = mysqli_error($linkID);
+			return false;
+		}
+
+		if ( mysqli_num_rows($userTeamRoleR) == 0 ) {
+			$this->errorMsg = "User role was not found. Please contact a team administrator.";
+			$this->debugErrorMsg = "This occors when no a role has been assigned without a teamID.";
+			return false;
+		} elseif ( mysqli_num_rows($userTeamRoleR) > 1 ) {
+			$this->errorMsg = "User role is invalid. Please contact a team administrator.";
+			$this->debugErrorMsg = "This occors when more than 1 role has been assigned for a user for a single team.";
+			return false;
+		}
+
+		return mysqli_fetch_assoc($userTeamRoleR)['role'];
+
+	}
+
+	function getRoleFriendlyName ( $role ) {
+		switch ( $role ) {
+			case 'owner':
+				return "Owner";
+				break;
+			case "member":
+				return "Member";
+				break;
+			case "admin":
+				return "Administrator";
+				break;
+			default:
+				// code...
+				break;
+		}
+	}
 
     function getErrorMsg () {
         return $this->errorMsg;
