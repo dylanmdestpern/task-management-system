@@ -22,6 +22,7 @@
 	include_once("config.php");
     include_once("classes/class.user.php");
     include_once("classes/class.team.php");
+	include_once("classes/class.notification.php");
 
 	if ( DEBUG_MODE ) {
 		ini_set('display_errors', 1);

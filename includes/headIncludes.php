@@ -13,4 +13,5 @@
 <script  type="text/javascript" src="<?=$trailingPath?>js/loader.js"></script>
 
 <link rel="stylesheet" href="<?=$trailingPath?>css/main.css"/>
+<link rel="stylesheet" href="<?=$trailingPath?>css/notifications.css"/>
 <script type="text/javascript" src="<?=$trailingPath?>js/main.js"></script>
