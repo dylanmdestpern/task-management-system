@@ -19,6 +19,12 @@
 				devMsg($loggedUserTeaminfo);
 				devMsg("[".$loggedUser['id']."] ".$loggedUser['first_name']." ".$loggedUser['last_name']."'s role: <b>".$loggedUserTeamsIdsArray->getRoleFriendlyName($loggedUserTeamRole)."</b>");
 				devMsg($userNotifications);
+				$tasksTmp = new TM_Task;
+				if( ! $tasks = $tasksTmp->getAllTasks($linkID, 1) ) {
+					echo error($tasksTmp->getErrorMsg());
+					echo error($tasksTmp->getDebugErrorMsg());
+				}
+				devMsg($tasks);
 
                 if (isset($_GET["section"])) {
 

@@ -23,6 +23,7 @@
     include_once("classes/class.user.php");
     include_once("classes/class.team.php");
 	include_once("classes/class.notification.php");
+	include_once("classes/class.tasks.php");
 
 	if ( DEBUG_MODE ) {
 		ini_set('display_errors', 1);
