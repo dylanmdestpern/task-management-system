@@ -1,5 +1,8 @@
 <?php
 
+	$directory = 'img';
+	$background_images = array_diff(scandir($directory), array('..', '.'));
+
     session_start();
 
     if ( isset($_REQUEST['displaySuccessMsg']) ) {

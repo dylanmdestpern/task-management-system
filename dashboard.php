@@ -13,8 +13,15 @@
         <?php include_once("includes/dashboardNav.php") ?>
 
         <div class="container">
+            
             <?php if ( isset($_SESSION['teamID']) ) {
-
+                //Display tool buttons at the top of the page
+                ?>
+                <div class="newTaskContainer">
+                    <?php include "includes/newTaskForm.php";?>
+                </div>
+                <?php
+                
 				//Get the users role for this team
 				devMsg($loggedUserTeaminfo);
 				devMsg("[".$loggedUser['id']."] ".$loggedUser['first_name']." ".$loggedUser['last_name']."'s role: <b>".$loggedUserTeamsIdsArray->getRoleFriendlyName($loggedUserTeamRole)."</b>");

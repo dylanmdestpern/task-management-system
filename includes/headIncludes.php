@@ -12,6 +12,8 @@
 <script  type="text/javascript" src="<?=$trailingPath?>js/popper.min.js"></script>
 <script  type="text/javascript" src="<?=$trailingPath?>js/loader.js"></script>
 
+<script src="lib/ckeditor5/ckeditor.js"></script>
+
 <link rel="stylesheet" href="<?=$trailingPath?>css/main.css"/>
 <link rel="stylesheet" href="<?=$trailingPath?>css/notifications.css"/>
 <script type="text/javascript" src="<?=$trailingPath?>js/main.js"></script>

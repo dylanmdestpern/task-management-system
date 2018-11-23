@@ -8,8 +8,8 @@
         <?php include_once("includes/headIncludes.php"); ?>
 	</head>
 
-	<body style="padding-bottom: 100px;">
-
+	<body style="background: url('img/<?=$background_images[rand(2, (count($background_images) - 1))]?>') no-repeat 50% 50% fixed;" class="photo-background">
+    
         <div class="container">
 
             <div class="row">
